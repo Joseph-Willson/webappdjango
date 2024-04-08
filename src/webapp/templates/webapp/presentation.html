@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>présentation</title>
+    <link rel="stylesheet" href="{% static 'css/presentation.css' %}">
+</head>
+  <body>
+
+    <div class="contient">
+      
+      <div class="page">
+        <a href="/">
+          Page précédente
+        </a>
+      </div>
+
+    
+      <div class="title">
+        <h2> Étapes du projet </h2>
+      </div>
+
+      <div class="steps">
+        <a href="/step1/"      
+          style="font-size: 12px; text-transform: uppercase; margin: 20px; color: black; z-index: 1;
+          transition: font-size 0.3s ease;"
+          onmouseover="this.style.fontSize='14px'"
+          onmouseout="this.style.fontSize='12px'">
+          <h1> step 1 : Préprocessing & feature engineering </h1>
+        </a>
+
+        <a href="/step2/"
+          style="font-size: 12px; text-transform: uppercase; margin: 20px; color: black; z-index: 1;
+          transition: font-size 0.3s ease;"
+          onmouseover="this.style.fontSize='14px'"
+          onmouseout="this.style.fontSize='12px'">
+          <h1> step 2 : Discrétisation </h1>
+        </a>
+
+        <a href="/step3/"
+          style="font-size: 12px; text-transform: uppercase; margin: 20px; color: black; z-index: 1;
+          transition: font-size 0.3s ease;"
+          onmouseover="this.style.fontSize='14px'"
+          onmouseout="this.style.fontSize='12px'">
+          <h1> step 3 : Sélection des varibales </h1>
+        </a>
+
+        <a href="/step4/"
+          style="font-size: 12px; text-transform: uppercase; margin: 20px; color: black; z-index: 1;
+          transition: font-size 0.3s ease;"
+          onmouseover="this.style.fontSize='14px'"
+          onmouseout="this.style.fontSize='12px'">
+          <h1> step 4 : Grille de score </h1>
+        </a>
+
+        <a href="/step5/"
+          style="font-size: 12px; text-transform: uppercase; margin: 20px; color: black; z-index: 1;
+          transition: font-size 0.3s ease;"
+          onmouseover="this.style.fontSize='14px'"
+          onmouseout="this.style.fontSize='12px'">
+          <h1> step 5 : Segmentation </h1>
+        </a>
+
+        <a href="/step6/"
+          style="font-size: 12px; text-transform: uppercase; margin: 20px; color: black; z-index: 1;
+          transition: font-size 0.3s ease;"
+          onmouseover="this.style.fontSize='14px'"
+          onmouseout="this.style.fontSize='12px'">
+          <h1> step 6 : Calcul de la LRA, MoC A, MoC C et PD </h1>
+        </a>
+      </div>
+
+      
+      <button class="animated-button" onclick="location.href=/variables_choisis/" type="button">
+          <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
+          </svg>
+          <span class="text">suivant</span>
+          <span class="circle"></span>
+          <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
+          </svg>
+        </button>
+    </div>
+  </body>
+</html>

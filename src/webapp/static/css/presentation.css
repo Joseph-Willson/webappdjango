@@ -1,66 +1,54 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
-
 html, body {
-    height: 100%;
+    height: 100%; 
     margin: 0;
     border: 0;
     font-family: 'Lato', sans-serif;
+    
 }
 
 body {
-    background-image: url("nexialog.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+  background-image: url("pres.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.container {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: center;
-    font-size: 4rem;
-    color: white;
-    background: linear-gradient(to bottom, rgba(230, 147, 52, 0.845), rgba(222, 215, 149, 0.5));
-    position: relative;
-    z-index: 1;
+
+
+.contient {
+  background: linear-gradient(to bottom, rgba(230, 147, 52, 0.845), rgba(222, 215, 149, 0.5));
+  height: 100vh;
+  background-position: top; /* Positionnez le fond en haut de la fenêtre du navigateur */
+  background-size: cover; /* Assurez-vous que le fond couvre toute la .contient div */
+  background-attachment: fixed;
+  margin: 0;
 }
 
-.text {
-    text-align: right; 
+.contient .page {
+  position: relative;
+  top: 10px;
 }
 
-h1 {
-    margin: 0;
+.title {
+    font-size: 2rem;
+    text-align: center;
+    color: rgb(62, 56, 56); 
+    margin-top: 50px; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
 }
 
-h1:nth-child(2) {
-    color: rgb(125, 52, 52);
-    margin-bottom: 20px;
-}
-
-.balise-3, a{
+.steps, a{
+    font-size: 14px;
     text-transform: uppercase;
-    position: fixed;
-    bottom: 0;
-    left: 0;
     margin: 20px;
     color: white;
     z-index: 1;
 }
 
 
-.image-top-left {
-    position: fixed; 
-    top: 30px;
-    left: 0px;
-    z-index: 1;
-}
-
-
 .animated-button {
-    position: relative;
+    position: fixed;
+    left: 770px;
     display: flex;
     align-items: center;
     align-self: center;
@@ -147,13 +135,3 @@ h1:nth-child(2) {
     height: 220px;
     opacity: 1;
   }
-
-.square {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 400px;
-    height: 930px; 
-    background-color: #b37133;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}

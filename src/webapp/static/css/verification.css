@@ -1,0 +1,58 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: 'Lato', sans-serif;
+    
+}
+
+body {
+    background: linear-gradient(to bottom, rgba(230, 147, 52, 0.845), rgba(222, 215, 149, 0.5));
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.result {
+    font-size: 4rem;
+    text-align: center;
+    color: rgb(62, 56, 56); 
+    animation-duration: 3s;
+    animation-name: slidein;
+    margin-top: 50px; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+}
+
+
+.graphique-volume img {
+    max-width: 600px; 
+    max-height: 600px;
+    
+}
+
+
+.cramer img {
+    max-width: 600px; 
+    max-height: 600px;
+}
+
+.auc-gini {
+    font-size: 3rem;
+    color: white;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+    z-index: 1;
+}
+
+@keyframes slidein {
+    from {
+        margin-left: 100%;
+        width: 300%; 
+    }
+
+    to {
+        margin-left: 0%;
+        width: 100%;
+    }
+}

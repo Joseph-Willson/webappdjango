@@ -7,18 +7,18 @@ html, body {
 }
 
 body {
-    background-color: rgba(222, 215, 149, 0.5);
+    background-image: url("hero.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    
+    height: 50vh;   
 }
 
 
 .titre {
     font-size: 4rem;
     text-align: center;
-    color: #db3445; /* Couleur du texte */
+    color: rgb(202, 186, 186);
     margin-top: 50px; /* Espace en haut */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Ombre portée */
 }
