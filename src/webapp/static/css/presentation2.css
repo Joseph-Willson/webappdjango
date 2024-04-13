@@ -1,0 +1,78 @@
+html, body {
+    height: 100%; 
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: 'Lato', sans-serif;
+    
+}
+
+body {
+  background-image: url("pres.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+
+.contient {
+    background: linear-gradient(to bottom, rgba(230, 147, 52, 0.845), rgba(222, 215, 149, 0.5));
+    height: 100vh;
+    background-position: top; /* Positionnez le fond en haut de la fenêtre du navigateur */
+    background-size: cover; /* Assurez-vous que le fond couvre toute la .contient div */
+    background-attachment: fixed;
+}
+
+.titre {
+    font-size: 2rem;
+    text-align: center;
+    color: rgb(62, 59, 56);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.titre h1 {
+    padding: 2rem;
+    margin: 0;
+}
+
+/* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+    background-color: rgba(230, 147, 52, 0.845);
+    color: #444;
+    cursor: pointer;
+    padding: 2rem;
+    width: 90%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
+  
+  /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+    background-color: #f0875a;
+}
+  
+  /* Style the accordion panel. Note: hidden by default */
+.panel {
+    width: 90%;
+    padding: 0 18px;
+    background-color: white;
+    display: none;
+    overflow: hidden;
+}
+
+
+.accordion:after {
+    content: '\02795'; /* Unicode character for "plus" sign (+) */
+    font-size: 13px;
+    color: #777;
+    float: right;
+    margin-left: 5px;
+}
+  
+.active:after {
+    content: "\2796"; /* Unicode character for "minus" sign (-) */
+}

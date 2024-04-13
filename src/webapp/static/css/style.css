@@ -28,12 +28,15 @@ body {
 }
 
 .text {
-    text-align: right; 
+  text-align: right;
+  margin-right: 20px; /* Ajoute une marge de 10 pixels à droite du texte */
+  align-self: flex-end;
 }
 
 h1 {
     margin: 0;
 }
+
 
 h1:nth-child(2) {
     color: rgb(125, 52, 52);
@@ -153,7 +156,7 @@ h1:nth-child(2) {
     left: 0;
     top: 0;
     width: 400px;
-    height: 930px; 
-    background-color: #b37133;
+    height: 100%; 
+    background-color: #b96f32;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }

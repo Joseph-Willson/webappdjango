@@ -8,6 +8,75 @@
     <title>Document</title>
 </head>
 <body>
-    <h1> Bonjour </h1>
+
+    <div class="dash">
+        <h1> DASHBOARD </h1>
+    </div>
+
+    <div class="filtre-effacer">
+        <a href="/dashboard/">
+            <p>Effacer les filtres</p>
+        </a>
+    </div>
+
+    <div class="menu">
+
+        <div class="logo">
+            <img src="{% static 'css/nexialog2.png' %}" alt="Logo">
+        </div>
+        
+        <ul class="menu-items">
+            <li><a href="/">Accueil</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">À propos</a></li>
+            <li><a href="/aboutus/">Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+
+        <div class="cards">
+            <div class="card1">
+                <h2>Taux de défaut</h2>
+                <h2>{{target}}%</h2>
+            </div>
+            <div class="card2">
+                <h2>PD</h2>
+                <h2>{{PD}}%</h2>
+            </div>
+            <div class="card3">
+                <h2>Revenue Moyen</h2>
+                <h2>{{revenue}}€</h2>
+            </div>
+            <div class="card4">
+                <h2>CHR Moyen</h2>
+                <h2>{{CHR}}</h2>
+            </div>
+        </div>
+
+    </div>
+
+    <form class="form" method="GET" action="">
+        <button>
+            <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="search">
+                <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9" stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+        </button>
+        <input class="input" placeholder="Type your text" required="" type="text" name="identifiant">
+        <button class="reset" type="reset">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+    </form>
+    
+    <div class="tx">
+        {{ graph | safe }}
+    </div>
+
+    <div class="segment">
+        {{ graph2 | safe }}
+    </div>
+
 </body>
 </html>

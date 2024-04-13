@@ -1,38 +1,40 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>CSV Table</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/table.css' %}">
 </head>
+
 <body>
     <div>
-        <!-- Barre de navigation pour filtrer -->
-        <ul class="navigation">
-            <li><a href="?">Tous</a></li>
-            {% for option in name_type_suite_options %}
-                <li><a href="?name_type_suite={{ option }}">{{ option }}</a></li>
-            {% endfor %}
-        </ul>
+        <!-- Formulaire pour filtrer -->
+        <form method="GET" action="">
+            <label for="filter">Filtrer par nom de type de suite :</label>
+            <input type="text" id="filter" name="name_type_suite">
+            <button type="submit">Filtrer</button>
+        </form>
     </div>
-    
+
+
     <!-- Tableau de données -->
     <table class="data-table">
         <thead>
             <tr>
                 {% for column in data.columns %}
-                    <th>{{ column }}</th>
+                <th>{{ column }}</th>
                 {% endfor %}
             </tr>
         </thead>
         <tbody>
             {% for index, row in data.iterrows %}
-                <tr>
-                    {% for value in row %}
-                        <td>{{ value }}</td>
-                    {% endfor %}
-                </tr>
+            <tr>
+                {% for value in row %}
+                <td>{{ value }}</td>
+                {% endfor %}
+            </tr>
             {% endfor %}
         </tbody>
     </table>
@@ -40,4 +42,5 @@
     {{ graph_html | safe }}
 
 </body>
+
 </html>

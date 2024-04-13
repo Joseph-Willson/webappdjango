@@ -106,8 +106,8 @@ button {
     cursor: pointer;
     overflow: hidden;
     transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-    left: 740px;
-    bottom: 200px;
+    left: 45%;
+    bottom: 25%;
 }
 
 .animated-button svg {

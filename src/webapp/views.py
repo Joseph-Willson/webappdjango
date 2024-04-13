@@ -9,6 +9,7 @@ matplotlib.use('agg')
 import matplotlib.pyplot as plt
 import io
 import base64
+import plotly.express as px
 
 import numpy as np
 from scipy.stats import chi2_contingency
@@ -27,6 +28,11 @@ def index(request):
 
 def presentation(request):
     return render(request, "webapp/presentation.html")
+
+######################################
+
+def presentation2(request):
+    return render(request, "webapp/presentation2.html")
 
 ######################################
 
@@ -92,6 +98,7 @@ def variables_choisis(request):
 
 def verification(request):
     graphs_base64 = []  # Pour stocker les images converties en base64
+    mod = []
 
     with open('../src/data/data.txt', 'r') as file:
         content = file.read().split("-")
@@ -105,9 +112,16 @@ def verification(request):
         grouped = df_discretized.groupby([variable, 'annee'])['TARGET'].mean().reset_index()
         pivot_df = grouped.pivot(index='annee', columns=variable, values='TARGET')
 
+        # Créer un graphique pour chaque modalité de la variable courante
         plt.figure(figsize=(12, 6))
         for modalite in pivot_df.columns:
             plt.plot(pivot_df.index, pivot_df[modalite], label=f'{variable} {modalite}')
+
+            # Vérifier s'il y a un croisement avec une autre modalité de la même variable
+            other_modalities = [col for col in pivot_df.columns if col != modalite]
+            for other_modalite in other_modalities:
+                if any(pivot_df[modalite] < pivot_df[other_modalite]) and any(pivot_df[modalite] > pivot_df[other_modalite]):
+                    mod.append(f"Il y a un croisement pour {variable} entre les modalités {modalite} et {other_modalite}.")
 
         plt.title(f"Évolution de la moyenne de TARGET pour {variable} par annee")
         plt.xlabel('annee')
@@ -209,13 +223,51 @@ def verification(request):
     auc_sm = roc_auc_score(y_test, y_pred_proba_sm)
     gini = 2 * auc_sm - 1
 
-    return render(request, "webapp/verification.html", {'graphs_base64': graphs_base64, 'vdecramer' : img_base64_cramer, 'auc' : round(auc_sm,2), 'gini' : round(gini,2)})
+    if mod == []:
+        return render(request, "webapp/verification.html", {'graphs_base64': graphs_base64, 'vdecramer' : img_base64_cramer, 'auc' : round(auc_sm,2), 'gini' : round(gini,2)})
+    else:
+        return render(request, "webapp/verification2.html", {'graphs_base64': graphs_base64, 'vdecramer' : img_base64_cramer, 'auc' : round(auc_sm,2), 'gini' : round(gini,2)})
         
 
 ######################################################
 
 def dashboard(request):
-    return render(request, "webapp/dashboard.html")
+    table_finale = pd.read_csv("../src/data/table_finale.csv")
+
+    ID = table_finale["SK_ID_CURR"].unique()
+    
+    selection = request.GET.get('identifiant', None)
+
+    if selection:
+        table_finale = table_finale[table_finale["SK_ID_CURR"] == int(selection)]
+
+    target = round(table_finale["TARGET"].mean() * 100, 2)
+    PD = round(table_finale["PD"].mean() * 100, 2)
+    revenue = round(table_finale["AMT_INCOME_TOTAL"].mean(), 2)
+    CHR = round(table_finale["Segment"].mean(), 2)
+
+    m = table_finale.groupby('Segment')['TARGET'].mean().reset_index()
+    m = m.rename(columns={'TARGET': 'taux de défaut'})
+
+    fig = px.bar(m, x='Segment', y='taux de défaut', 
+             title='Taux de défaut en fonction du segment',
+             labels={'Segment': 'Segment', 'taux de défaut': 'taux de défaut'})
+
+    
+    graph_html = fig.to_html(full_html=False)
+
+    m2 = table_finale["Segment"].value_counts()
+    m2_df = m2.to_frame().reset_index()
+    m2_df.columns = ['Segment', 'Count']
+
+
+    fig2 = px.pie(m2_df, values='Count', names="Segment", 
+             title="Pourcentage d'individus par segment")
+
+
+    graph_html2 = fig2.to_html(full_html=False)
+
+    return render(request, "webapp/dashboard.html", {"target" : target, "PD" : PD, "revenue" : revenue, "CHR" : CHR, "graph" : graph_html, "graph2" : graph_html2})
 
 
 

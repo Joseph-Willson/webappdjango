@@ -39,6 +39,7 @@ body {
 
 .steps, a{
     font-size: 14px;
+    text-decoration:none;
     text-transform: uppercase;
     margin: 20px;
     color: white;
@@ -48,7 +49,7 @@ body {
 
 .animated-button {
     position: fixed;
-    left: 770px;
+    left: 45%;
     display: flex;
     align-items: center;
     align-self: center;

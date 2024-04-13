@@ -1,43 +1,86 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vérification</title>
-    <link rel="stylesheet" href="{% static 'css/verification.css' %}">
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vérification</title>
+  <link rel="stylesheet" href="{% static 'css/verification.css' %}">
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
-    <body>
 
-        <div class="page">
-            <a href="/variables_choisis/" style="color: white; position: absolute; top: 20px; left: 10px;">
-              Page précédente
-            </a>
-        </div>
+<body>
+  <div class="contient">
+    <div class="page-actions">
+      <a href="/variables_choisis/" class="back-btn" >
+        Page précédente
+      </a>
+    </div>
 
-        <div class="result">
-            <h1> Résultats du test : </h1>
-        </div>
-        
-        <div class="auc-gini">
-            <h2> Votre AUC est de {{auc}} </h2>
-            <h2> Votre Gini est de {{gini}} </h2>
-        </div>
+    <div class="result">
+      <h1> Résultats du test : </h1>
+    </div>
 
-        <div class="graphique-volume" style="margin-left: 200px;">
-            <h2> Graphique présentant le stabilité des taux en fonction du temps :</h2>
-            {% for graph_base64 in graphs_base64 %}
-                <img src="data:image/png;base64,{{ graph_base64 }}" alt="Graphique">
-            {% endfor %}
-        </div>
+    <div class="auc-gini">
+      <h2> Votre AUC est de {{auc}} </h2>
+      <h2> Votre Gini est de {{gini}} </h2>
+    </div>
+
+    <div class="graphique-volume-container">
+      <h2> Graphique présentant le stabilité des taux en fonction du temps :</h2>
+      <div class="graphique-volume-items">
+        {% for graph_base64 in graphs_base64 %}
+        <img src="data:image/png;base64,{{ graph_base64 }}" alt="Graphique">
+        {% endfor %}
+
+      </div>
+    </div>
+
+    <div class="cramer-container">
+      <div class="cramer">
+        <h2> Matrice de Cramer : </h2>
+        <img src="data:image/png;base64,{{ vdecramer }}" alt="Graphique">
+      </div>
+
+      <div class="cramer-actions">
 
 
-        <div class="cramer" style="margin-left: 200px;">
-            <h2> Matrice de Cramer : </h2>
-            <img src="data:image/png;base64,{{ vdecramer }}" alt="Graphique">
-        </div>
+        <button class="animated-button" onclick="location.href=/dashboard/" type="button">
+          <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+            </path>
+          </svg>
+          <span class="text">Démo</span>
+          <span class="circle"></span>
+          <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+            </path>
+          </svg>
+        </button>
 
+        <button class="animated-button" onclick="location.href=/dashboard/" type="button">
+          <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+            </path>
+          </svg>
+          <span class="text">Dashboard</span>
+          <span class="circle"></span>
+          <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+            </path>
+          </svg>
+        </button>
 
-    </body>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+
 </html>

@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import index, presentation, aboutus, csv_table, variables_choisis, verification, step1, step2, step3, step4, step5, step6, dashboard
+from .views import index, presentation, aboutus, csv_table, variables_choisis, verification, step1, step2, step3, step4, step5, step6, dashboard, presentation2
 
 urlpatterns = [
     path('', index, name="webapp-index"),
@@ -15,4 +15,5 @@ urlpatterns = [
     path('step5/', step5, name='step5'),
     path('step6/', step6, name='step6'),
     path('dashboard/', dashboard, name='dashboard'),
+    path('presentation2/', presentation2, name='presentation2'),
 ]
