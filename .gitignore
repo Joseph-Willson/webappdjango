@@ -6,3 +6,5 @@ src/data/data.txt
 src/data/table_finale.csv
 src/data/table_finale2.csv
 Dockerfile
+docker-compose.yml
+.dockerignore
