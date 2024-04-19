@@ -8,30 +8,33 @@ html, body {
 }
 
 body {
-    background: linear-gradient(to bottom, rgba(230, 147, 52, 0.845), rgba(222, 215, 149, 0.5));
-    background-position: center;
-    background-repeat: no-repeat;
+    background: rgba(230, 147, 52, 0.845);
+    /* background-position: center; */
+    background-repeat: repeat;
     background-size: cover;
+}
+
+.main-content {
+    display: flex;
+}
+
+.container{
+    max-width: 1300px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .dash, h1 {
     letter-spacing: 13px;
     color: #424951;
     font-size: 5rem;
-    position: absolute;
-    left: 20%;
-    top: 0%;
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 .menu {
+    min-height: 100vh;
     width: 250px;
-    height: 100%;
     background-color: #cb711c;
-    position: fixed;
-    top: 0;
-    left: 0;
-    overflow-y: auto;
     box-shadow: 0 0 10px rgba(0, 0, 0, 1);
 }
 
@@ -65,51 +68,16 @@ body {
     color: #ffc107;
 }
 
-.content {
-    margin-left: 270px; /* laisser un espace pour le menu */
-    padding: 20px;
+.card-items{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap:2rem;
+    margin-block: 3rem;
 }
 
-
-
-.card1 {
-    position: absolute;
-    left: 20%;
-    top: 200px;
-    width: 300px;
-    height: 130px; 
-    border-radius: 30px;
-    background-color: #ecab6e;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-
-.card2 {
-    position: absolute;
-    left: 40%;
-    top: 200px;
-    width: 300px;
-    height: 130px; 
-    border-radius: 30px;
-    background-color: #ecab6e;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-.card3 {
-    position: absolute;
-    left: 60%;
-    top: 200px;
-    width: 300px;
-    height: 130px; 
-    border-radius: 30px;
-    background-color: #ecab6e;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-.card4 {
-    position: absolute;
-    left: 80%;
-    top: 200px;
+.card-item {
     width: 300px;
     height: 130px; 
     border-radius: 30px;
@@ -213,21 +181,29 @@ input:not(:placeholder-shown) ~ .reset {
     width: 17px;
     margin-top: 3px;
 }
+
+.graph-container {
+    /* display: grid;
+    grid-gap: 2rem;
+    grid-template:
+    "graph2 graph3" 1fr
+    "graph1 graph1" 1fr; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
   
 .tx {
-    position: absolute;
-    left: 20%;
-    bottom: 30%;
-    width: 700px;
-    height: 200px;
+    grid-area: graph1;
 }
 
 .segment {
-    position: absolute;
-    right: 5%;
-    bottom: 30%;
-    width: 500px;
-    height: 200px;
+    grid-area: graph3;
+}
+
+.tx_ann {
+    grid-area: graph2;
 }
 
 .filtre-effacer{
@@ -241,4 +217,12 @@ input:not(:placeholder-shown) ~ .reset {
     text-decoration: none;
     color: black;
     font-weight: bold;
+}
+
+.recherche {
+    position: absolute;
+    top: 5%;
+    right: 17%;
+    color: white;
+    z-index: 1;
 }

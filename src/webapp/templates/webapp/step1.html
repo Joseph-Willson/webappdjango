@@ -1,11 +1,76 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>step 1</title>
+    <title>Étape 1</title>
+    <link rel="stylesheet" href="{% static 'css/step1.css' %}">
 </head>
+
 <body>
-    
+    <div class="container">
+        <div class="details-container">
+            <h1>Plus de détails :</h1>
+        </div>
+        <div class="feature-container">
+            <div class="feature">
+                <h2>Pourcentage du montant du crédit par rapport au revenu total (<code>CREDIT_INCOME_PERCENT</code>) :
+                </h2>
+                <p>Description : Cette feature représente le ratio entre le montant du crédit accordé et le revenu total
+                    du
+                    demandeur.</p>
+                <p>Importance : Un ratio élevé pourrait indiquer un niveau d'endettement plus élevé, ce qui est un
+                    facteur
+                    critique dans l'évaluation du risque de crédit.</p>
+            </div>
+
+
+            <div class="feature">
+                <h2>Revenu par personne dans la famille (<code>INCOME_PER_PERSON</code>) :</h2>
+                <p>Description : Calculé en divisant le revenu total par le nombre de membres de la famille.</p>
+                <p>Importance : Permet d'évaluer le niveau de vie et la capacité de remboursement du crédit sur une base
+                    par
+                    tête, ajustée selon la taille de la famille.</p>
+            </div>
+
+            <div class="feature">
+                <h2>Taux de paiement (<code>PAYMENT_RATE</code>) :</h2>
+                <p>Description : Représente la part de l'annuité par rapport au montant total du crédit.</p>
+                <p>Importance : Un faible taux de paiement indique des paiements annuels plus petits par rapport au
+                    montant
+                    du crédit, ce qui peut influencer la durée du remboursement et la charge financière globale sur
+                    l'emprunteur.</p>
+            </div>
+
+            <div class="feature">
+                <h2>Ancienneté du client en années (<code>CLIENT_SENIORITY</code>) :</h2>
+                <p>Description : Calculée en divisant le nombre de jours d'emploi par -365 pour convertir en années.</p>
+                <p>Importance : L'ancienneté peut refléter la stabilité de l'emploi, un élément important dans
+                    l'évaluation
+                    de la fiabilité et de la stabilité financière de l'emprunteur.</p>
+            </div>
+
+            <div class="feature">
+                <h2>Âge du client en années (<code>CLIENT_AGE</code>) :</h2>
+                <p>Description : Calculé en divisant le nombre de jours depuis la naissance par -365.</p>
+                <p>Importance : L'âge peut être un facteur dans la détermination du type de produit de crédit adapté
+                    ainsi
+                    que dans l'évaluation du risque de longévité du crédit.</p>
+            </div>
+
+            <div class="feature">
+                <h2>Âge du client à la fin du remboursement du prêt (<code>AGE_LOAN_FINISH</code>) :</h2>
+                <p>Description : Estimé en ajoutant la durée du prêt (calculée à partir du montant du crédit et de
+                    l'annuité) à l'âge actuel du client.</p>
+                <p>Importance : Utile pour évaluer si la durée du crédit est appropriée par rapport à l'âge du client,
+                    influençant ainsi les risques associés au remboursement.</p>
+            </div>
+        </div>
+
+
+    </div>
 </body>
+
 </html>

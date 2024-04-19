@@ -3,61 +3,122 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static 'css/presentation2.css' %}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>présentation</title>
+  <link rel="stylesheet" href="{% static 'css/presentation2.css' %}">
 </head>
 
 <body>
 
+  <main class="contient">
 
-    <div class="contient">
-
-        <div class="titre">
-            <h1>Présentation de la méthodologie</h1>
-        </div>
-
-        <button class="accordion">Section 1</button>
-        <div class="panel">
-            <p>Lorem ipsum...</p>
-            <p>bonjour comment ça va</p>
-        </div>
-
-        <button class="accordion">Section 2</button>
-        <div class="panel">
-            <p>Lorem ipsum...</p>
-        </div>
-
-        <button class="accordion">Section 3</button>
-        <div class="panel">
-            <p>Lorem ipsum...</p>
-        </div>
-
+    <div class="page">
+      <a href="/presentation/">
+        Page précédente
+      </a>
     </div>
 
-    <script>
-        var acc = document.getElementsByClassName("accordion");
-        var i;
 
-        for (i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function () {
-                /* Toggle between adding and removing the "active" class,
-                to highlight the button that controls the panel */
-                this.classList.toggle("active");
+    <div class="container">
 
-                /* Toggle between hiding and showing the active panel */
-                var panel = this.nextElementSibling;
-                if (panel.style.display === "block") {
-                    panel.style.display = "none";
-                } else {
-                    panel.style.display = "block";
-                }
-            });
-        }
-    </script>
+      <div style="display: flex; align-items: center; justify-content: center;">
+        <h2 class="title"> Présentation de la méthodologie </h2>
+      </div>
 
+      <div class="steps">
+        <a href="/step5/" class="step-title">
+          <h1> 3 - Segmentation </h1>
+        </a>
+        <p>La segmentation est un processus analytique qui consiste à diviser un ensemble de données en groupes
+          homogènes, ou segments, pour optimiser la gestion du risque et répondre aux exigences réglementaires. Dans le
+          domaine du risque de crédit, elle permet de regrouper des emprunteurs selon leur risque de défaut de façon
+          homogène, facilitant ainsi une analyse précise et réglementairement conforme du risque.
+        </p>
 
+        <a href="/step6/" class="step-title">
+          <h1> 4 - Probilités de défaut </h1>
+        </a>
+        <p>Dans le domaine financier, spécialement en gestion du risque de crédit, il est crucial de comprendre et
+          d'appliquer différentes Marges de Conservatisme (MoC)
+        </p>
+        <p>
+          L'utilisation de ces marges de conservatisme vise à renforcer la robustesse des modèles de risque de crédit,
+          en s'assurant que les institutions financières peuvent gérer et contrôler efficacement le risque de crédit,
+          même dans des contextes de haute incertitude. Ces ajustements marginaux aident les banques et les institutions
+          financières à respecter les exigences réglementaires et à fournir des évaluations du risque plus prudentes et
+          fiables.
+        </p>
+
+          
+        <h1 class="variable-selection">Choisissez votre selection de variable</h1>
+
+        <div class="fbs">
+          <button class="animated-button" onclick="location.href=/loader/" type="button">
+            <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+              </path>
+            </svg>
+            <span class="text">Forward</span>
+            <span class="circle"></span>
+            <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+              </path>
+            </svg>
+          </button>
+
+          <button class="animated-button" onclick="location.href=/variables_choisis/" type="button">
+            <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+              </path>
+            </svg>
+            <span class="text">Stepwise</span>
+            <span class="circle"></span>
+            <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+              </path>
+            </svg>
+          </button>
+
+          <button class="animated-button" onclick="location.href=/loader/" type="button">
+            <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+              </path>
+            </svg>
+            <span class="text">Backward</span>
+            <span class="circle"></span>
+            <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+              </path>
+            </svg>
+          </button>
+
+          <button class="animated-button" onclick="location.href=/variables_choisis/" type="button">
+            <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+              </path>
+            </svg>
+            <span class="text">Manuelle</span>
+            <span class="circle"></span>
+            <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+              </path>
+            </svg>
+          </button>
+
+        </div>
+
+      </div>
+
+  </main>
 </body>
 
 </html>

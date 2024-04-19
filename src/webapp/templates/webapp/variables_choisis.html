@@ -1,86 +1,94 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>variables_choisis</title>
-    <link rel="stylesheet" href="{% static 'css/variables.css' %}">
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>variables_choisis</title>
+  <link rel="stylesheet" href="{% static 'css/variables.css' %}">
+
 </head>
-    <body>
 
-      <div class="page">
-        <a href="/presentation/" style="color: white; position: fixed; top: 20px; left: 10px;">
-          Page précédente
-        </a>
-      </div>
+<body>
 
-      <div class="titre">
-          <h1>Choisissez vos variables :</h1>
-      </div>
+  <div class="page">
+    <a href="/presentation2/" style="color: white; position: fixed; top: 20px; left: 10px;">
+      Page précédente
+    </a>
+  </div>
 
-
-
-      <div class="container">
+  <div class="titre">
+    <h1>Choisissez vos variables :</h1>
+  </div>
 
 
-          <form method="post">
-              {% csrf_token %}
-              {{ form.my_field }}
-              <!-- <button type="submit">Envoyer</button> -->
-              <button>
-                  <div class="svg-wrapper-1">
-                    <div class="svg-wrapper">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        width="30"
-                        height="30"
-                        class="icon"
-                      >
-                        <path
-                          d="M22,15.04C22,17.23 20.24,19 18.07,19H5.93C3.76,19 2,17.23 2,15.04C2,13.07 3.43,11.44 5.31,11.14C5.28,11 5.27,10.86 5.27,10.71C5.27,9.33 6.38,8.2 7.76,8.2C8.37,8.2 8.94,8.43 9.37,8.8C10.14,7.05 11.13,5.44 13.91,5.44C17.28,5.44 18.87,8.06 18.87,10.83C18.87,10.94 18.87,11.06 18.86,11.17C20.65,11.54 22,13.13 22,15.04Z"
-                        ></path>
-                      </svg>
-                    </div>
-                  </div>
-                  <span>Save</span>
-              </button>
-          </form>
-          
-      </div>
+  <p> Attention : Veuillez respecter le format suivant (variable1/variable2/variable3...)</p>
 
-      <button class="animated-button" onclick="location.href=/verification/" type="button">
-          <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-            ></path>
-          </svg>
-          <span class="text">Test</span>
-          <span class="circle"></span>
-          <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-            ></path>
-          </svg>
+  <div class="container">
+
+    <form method="post">
+      {% csrf_token %}
+      {{ form.my_field }}
+      <!-- <button type="submit">Envoyer</button> -->
+      <button>
+        <div class="svg-wrapper-1">
+          <div class="svg-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" class="icon">
+              <path
+                d="M22,15.04C22,17.23 20.24,19 18.07,19H5.93C3.76,19 2,17.23 2,15.04C2,13.07 3.43,11.44 5.31,11.14C5.28,11 5.27,10.86 5.27,10.71C5.27,9.33 6.38,8.2 7.76,8.2C8.37,8.2 8.94,8.43 9.37,8.8C10.14,7.05 11.13,5.44 13.91,5.44C17.28,5.44 18.87,8.06 18.87,10.83C18.87,10.94 18.87,11.06 18.86,11.17C20.65,11.54 22,13.13 22,15.04Z">
+              </path>
+            </svg>
+          </div>
+        </div>
+        <span>Save</span>
       </button>
-      
-      <style>
-          
-          #id_my_field {
-              width: 500px;
-              height: 100px;
-              background-color: #f9f9f9; /* Couleur de fond */
-              color: #333; /* Couleur du texte */
-              border: 2px solid #ccc; /* Bordure solide */
-              border-radius: 10px; /* Coins arrondis */
-              padding: 10px; /* Rembourrage intérieur */
-              box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre */
-              font-size: 16px; /* Taille de la police */
-              
-          }
-      </style>
+    </form>
 
-    </body>
+  </div>
+
+  <button class="animated-button" onclick="location.href=/verification/" type="button">
+    <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+      </path>
+    </svg>
+    <span class="text">Submit</span>
+    <span class="circle"></span>
+    <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+      </path>
+    </svg>
+  </button>
+
+  <style>
+    #id_my_field {
+      width: 500px;
+      height: 100px;
+      background-color: #f9f9f9;
+      /* Couleur de fond */
+      color: #333;
+      /* Couleur du texte */
+      border: 2px solid #ccc;
+      /* Bordure solide */
+      border-radius: 10px;
+      /* Coins arrondis */
+      padding: 10px;
+      /* Rembourrage intérieur */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      /* Ombre */
+      font-size: 16px;
+      /* Taille de la police */
+
+    }
+  </style>
+
+
+  <a href="csv_table/">
+    <h3> Dictionnaire des variables </h3>
+  </a>
+
+</body>
+
 </html>

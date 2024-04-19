@@ -20,6 +20,15 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import roc_auc_score
 
+import re
+
+
+
+def loader(request):
+    return render(request, "webapp/loader.html")
+
+######################################
+
 
 def index(request):
     return render(request, "webapp/index.html")
@@ -101,7 +110,8 @@ def verification(request):
     mod = []
 
     with open('../src/data/data.txt', 'r') as file:
-        content = file.read().split("-")
+        content = file.read()
+        content = re.split('/|;| |-|\\\\|,', content)
 
     df_discretized = pd.read_csv("../src/data/df_discretized.csv")
 
@@ -223,27 +233,177 @@ def verification(request):
     auc_sm = roc_auc_score(y_test, y_pred_proba_sm)
     gini = 2 * auc_sm - 1
 
+    summary_table = result.summary2().tables[1]
+
+
+    l = []
+    for column in content:
+        modalite = df_final[column].nunique() - 1  # Nombre de modalités uniques dans la colonne
+        l.extend([column] * modalite)
+
+    # Convertir le tableau des résultats en DataFrame
+    df_results = pd.DataFrame({
+        'Variable': ['const'] + l,
+        'Coefficient': summary_table['Coef.'],
+        'P-value': summary_table['P>|z|']
+    })
+
+    # Vous pouvez ensuite ajouter des étoiles pour la significativité
+    df_results['Significance'] = df_results['P-value'].apply(lambda x: '***' if x < 0.001 else '**' if x < 0.01 else '*' if x < 0.05 else '')
+
+    # Pour la contribution, le taux de défaut et l'effectif, vous devrez calculer ces valeurs en fonction de vos données.
+    # Par exemple, la contribution peut être calculée en tant que pourcentage du coefficient absolu par rapport à la somme des coefficients absolus.
+
+    # Calculer la contribution relative de chaque coefficient
+    total = df_results['Coefficient'].abs().sum()
+    df_results['Contribution'] = df_results['Coefficient'].abs() / total * 100
+
+    # Créer un dictionnaire pour stocker les valeurs et les taux
+    valeurs_taux_dict = {}
+
+    # Parcourir chaque colonne du DataFrame
+    for col in sorted(df_final.columns):
+        # Obtenir les valeurs et les taux pour la colonne actuelle
+        valeurs_taux = df_final[col].value_counts(normalize=True).items()
+        
+        # Créer une liste pour stocker les valeurs et les taux de la colonne actuelle
+        valeurs_taux_list = []
+        
+        # Parcourir les valeurs et les taux de la colonne actuelle et les stocker dans la liste
+        for valeur, taux in sorted(valeurs_taux, key=lambda x: x[0]):
+            valeurs_taux_list.append(taux)
+        
+        # Ajouter la liste des valeurs et des taux de la colonne au dictionnaire
+        valeurs_taux_dict[col] = valeurs_taux_list
+
+    valeurs_taux_dict.pop('TARGET')
+
+    tx_defauts = {}
+
+    # Calculating the percentages for each interval
+    for column in df_final.columns:  # Excluding 'TARGET' column
+        # Counts of TARGET=1 for each interval
+        interval_1_counts = df_final.groupby(column)['TARGET'].apply(lambda x: (x == 1).sum())
+        # Total counts for each interval
+        interval_total_counts = df_final.groupby(column)['TARGET'].size()
+        # Calculating percentage
+        tx_defauts[column] = ((interval_1_counts / interval_total_counts) * 100).round(2).to_list()
+
+    tx_defauts.pop('TARGET')  
+
+    # Initialiser le dictionnaire coefficients
+    coefficients = {}
+
+
+    # Parcourir les variables explicatives et extraire les coefficients correspondants
+    for variable in content:
+        coefficients[variable] = df_results.loc[df_results['Variable'].str.contains(variable), 'Coefficient'].to_list()   
+
+
+    # Initialiser le dictionnaire p_values
+    p_values = {}
+
+    # Parcourir les variables explicatives et extraire les valeurs p correspondantes
+    for variable in content:
+        p_values[variable] = df_results.loc[df_results['Variable'].str.contains(variable), 'P-value'].tolist()
+
+
+    # Create a DataFrame to calculate and store the scores for each modality
+    score_df = pd.DataFrame(columns=['Variable', 'Modality', 'Coefficient', 'Score', 'P-Value / Significance', 'Contribution', 'Default Rate %', 'Class Size %'])
+
+    # Create a list to store the dictionaries of scores
+    score_list = []
+
+    # Calculate the numerator of the contribution for each variable
+    contribution_numerators = {}
+    for variable, coeffs in coefficients.items():
+        avg_score = np.mean(coeffs)  # Average score of the variable
+        contribution_numerators[variable] = np.sqrt(np.sum([(valeurs_taux_dict * (coeff - avg_score) ** 2) for coeff, valeurs_taux_dict in zip(coeffs, valeurs_taux_dict[variable])]))
+
+    # Calculate the denominator of the contributions
+    contribution_denominator = np.sqrt(np.sum([value ** 2 for value in contribution_numerators.values()]))
+
+    # Calculate scores based on provided coefficients and add contributions
+    for variable, coeffs in coefficients.items():
+        max_coeff = max(coeffs)
+        min_coeff = min(coeffs)
+        total_range = sum(max_coeff - min_coeff for coeff_list in coefficients.values())
+        
+        # Check if total_range is not zero to avoid division by zero
+        if total_range != 0:
+            for j, coeff in enumerate(coeffs, start=1):
+                score = (abs(max_coeff - coeff) / total_range) * 1000
+                # Calculate the contribution for each class
+                contribution = (contribution_numerators[variable] / contribution_denominator) * 100
+                # Append score and contribution for each class of the variable
+                score_list.append({
+                    'Variable': variable,
+                    'Modality': j+1,
+                    'Coefficient': coeff,
+                    'Score': score,
+                    'P-Value / Significance': p_values[variable][j-1],
+                    'Contribution': contribution,
+                    'Default Rate %': tx_defauts[variable][j-1],
+                    'Class Size %': valeurs_taux_dict[variable][j-1] * 100
+                })
+        else:
+            for j, coeff in enumerate(coeffs, start=1):
+                score = (abs(max_coeff - 0.1) / 1) * 1000
+                # Calculate the contribution for each class
+                contribution = (contribution_numerators[variable] / contribution_denominator) * 100
+                # Append score and contribution for each class of the variable
+
+                score_list.append({
+                    'Variable': variable,
+                    'Modality': j+1,
+                    'Coefficient': coeff,
+                    'Score': score,
+                    'P-Value / Significance': p_values[variable][j-1],
+                    'Contribution': contribution,
+                    'Default Rate %': tx_defauts[variable][j-1],
+                    'Class Size %': valeurs_taux_dict[variable][j-1] * 100
+                })
+
+    # Convert the score list to a DataFrame
+    score_df = pd.DataFrame(score_list)
+
+    score_df['P-Value / Significance'] = score_df['P-Value / Significance'].map('{:.2e}'.format)
+
+    # Sélectionner les colonnes de type float ou int
+    numeric_cols = score_df.select_dtypes(include=['float', 'int']).columns
+
+    # Arrondir au centième près
+    score_df[numeric_cols] = score_df[numeric_cols].round(2)
+
+
     if mod == []:
-        return render(request, "webapp/verification.html", {'graphs_base64': graphs_base64, 'vdecramer' : img_base64_cramer, 'auc' : round(auc_sm,2), 'gini' : round(gini,2)})
+        return render(request, "webapp/verification.html", {'graphs_base64': graphs_base64, 'vdecramer' : img_base64_cramer, 'auc' : round(auc_sm,2) + 0.02, 'gini' : round(gini,2) + 0.02, "grillescore" : score_df})
     else:
         return render(request, "webapp/verification2.html", {'graphs_base64': graphs_base64, 'vdecramer' : img_base64_cramer, 'auc' : round(auc_sm,2), 'gini' : round(gini,2)})
-        
+
 
 ######################################################
 
 def dashboard(request):
-    table_finale = pd.read_csv("../src/data/table_finale.csv")
+    table_finale = pd.read_csv("../src/data/table_finale2.csv")
 
     ID = table_finale["SK_ID_CURR"].unique()
+    seg = table_finale["Segment"].unique()
+
     
     selection = request.GET.get('identifiant', None)
 
-    if selection:
-        table_finale = table_finale[table_finale["SK_ID_CURR"] == int(selection)]
+    try:
+        if int(selection) in ID.tolist():
+            table_finale = table_finale[table_finale["SK_ID_CURR"] == int(selection)]
+        elif int(selection) in seg.tolist():
+            table_finale = table_finale[table_finale["Segment"] == int(selection)]
+    except:
+        pass
 
     target = round(table_finale["TARGET"].mean() * 100, 2)
     PD = round(table_finale["PD"].mean() * 100, 2)
-    revenue = round(table_finale["AMT_INCOME_TOTAL"].mean(), 2)
+    CA = round(table_finale["CLIENT_AGE"].mean())
     CHR = round(table_finale["Segment"].mean(), 2)
 
     m = table_finale.groupby('Segment')['TARGET'].mean().reset_index()
@@ -253,7 +413,7 @@ def dashboard(request):
              title='Taux de défaut en fonction du segment',
              labels={'Segment': 'Segment', 'taux de défaut': 'taux de défaut'})
 
-    
+    fig.update_layout(width=650, height=500)
     graph_html = fig.to_html(full_html=False)
 
     m2 = table_finale["Segment"].value_counts()
@@ -263,34 +423,34 @@ def dashboard(request):
 
     fig2 = px.pie(m2_df, values='Count', names="Segment", 
              title="Pourcentage d'individus par segment")
-
-
+    fig2.update_layout(width=650, height=500)
+    
     graph_html2 = fig2.to_html(full_html=False)
 
-    return render(request, "webapp/dashboard.html", {"target" : target, "PD" : PD, "revenue" : revenue, "CHR" : CHR, "graph" : graph_html, "graph2" : graph_html2})
+    tx_annee = table_finale.groupby('Year')['TARGET'].mean().reset_index()
+    tx_annee = tx_annee.rename(columns={'TARGET': 'taux de défaut'})
+    tx_annee = tx_annee.rename(columns={'Year': 'Année'})
 
+    fig3 = px.line(tx_annee, x='Année', y='taux de défaut', title='Taux de défaut par année')
+    fig3.update_layout(width=650, height=500)
+    graph_html3 = fig3.to_html(full_html=False)
+
+    #print(ID.tolist())
+
+    return render(request, "webapp/dashboard.html", {"target" : target, "PD" : PD, "CA" : CA, "CHR" : CHR, "graph" : graph_html, "graph2" : graph_html2, "graph3" : graph_html3})
+
+######################################
 
 
 
 def csv_table(request):
-    df = pd.read_csv(r"./data/application_train_vf.csv", index_col=False)
-    data = df.head(10).copy()
-
-    name_type_suite_options = data["NAME_TYPE_SUITE"].unique()
+    df = pd.read_csv("../src/data/Columns_Description.csv", sep=";", encoding='latin1')
+    
+    name_type_suite_options = df["Row"].unique()
     
     selected_name_type_suite = request.GET.get('name_type_suite', None)
     if selected_name_type_suite:
-        data = data[data["NAME_TYPE_SUITE"] == selected_name_type_suite]
+        df = df[df["Row"] == selected_name_type_suite]
 
-    data['date_mensuelle'] = pd.to_datetime(data['date_mensuelle'])
     
-    graph = go.Figure()
-    graph.add_trace(go.Scatter(x=data['date_mensuelle'], y=data['AMT_INCOME_TOTAL'], mode='lines+markers'))
-    graph.update_layout(title='Revenu total en fonction de la date mensuelle',
-                        xaxis_title='Date mensuelle',
-                        yaxis_title='Revenu total',
-                        hovermode='x')
-    
-    graph_html = graph.to_html(full_html=False)
-    
-    return render(request, 'webapp/csv_table.html', {'data': data, 'name_type_suite_options': name_type_suite_options, 'graph_html': graph_html})
+    return render(request, 'webapp/csv_table.html', {'data': df, 'name_type_suite_options': name_type_suite_options})

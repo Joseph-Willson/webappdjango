@@ -1,92 +1,81 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>présentation</title>
-    <link rel="stylesheet" href="{% static 'css/presentation.css' %}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>présentation</title>
+  <link rel="stylesheet" href="{% static 'css/presentation.css' %}">
 </head>
-  <body>
 
-    <div class="contient">
-      
-      <div class="page">
-        <a href="/">
-          Page précédente
-        </a>
-      </div>
+<body>
 
-    
-      <div class="title">
-        <h2> Étapes du projet </h2>
+  <main class="contient">
+
+    <div class="page">
+      <a href="/">
+        Page précédente
+      </a>
+    </div>
+
+
+    <div class="container">
+
+      <div style="display: flex; align-items: center; justify-content: center;">
+        <h2 class="title"> Présentation de la méthodologie </h2>
       </div>
 
       <div class="steps">
-        <a href="/step1/"      
-          style="font-size: 12px; text-transform: uppercase; margin: 20px; color: black; z-index: 1;
-          transition: font-size 0.3s ease;"
-          onmouseover="this.style.fontSize='14px'"
+        <a href="/step1/" style="font-size: 12px; text-transform: uppercase; margin: 20px; color: black; z-index: 1;
+          transition: font-size 0.3s ease;" onmouseover="this.style.fontSize='14px'"
           onmouseout="this.style.fontSize='12px'">
-          <h1> step 1 : Préprocessing & feature engineering </h1>
+          <h1> 1 - Feature engineering </h1>
         </a>
+        <p>La création de features (ou création de variables) est une étape fondamentale dans le développement de
+          modèles de machine learning, en particulier dans le domaine du risque de crédit. Elle permet de transformer ou
+          de créer de nouvelles variables à partir des données existantes afin d'enrichir le modèle prédictif et
+          d'améliorer sa capacité à identifier des patterns significatifs.
+        </p>
 
-        <a href="/step2/"
-          style="font-size: 12px; text-transform: uppercase; margin: 20px; color: black; z-index: 1;
-          transition: font-size 0.3s ease;"
-          onmouseover="this.style.fontSize='14px'"
+        <a href="/step2/" style="font-size: 12px; text-transform: uppercase; margin: 20px; color: black; z-index: 1;
+          transition: font-size 0.3s ease;" onmouseover="this.style.fontSize='14px'"
           onmouseout="this.style.fontSize='12px'">
-          <h1> step 2 : Discrétisation </h1>
+          <h1> 2 - Discrétisation / Sélection des variables </h1>
         </a>
+        <p>
+          La méthode Chi-Merge est la technique de discretisation utilisée dans notre modèle de risque de crédit pour
+          transformer les variables continues en catégories. Elle est essentielle pour modéliser des relations non
+          linéaires, améliorer la stabilité du modèle, gérer les valeurs extrêmes et manquantes, et rendre les résultats
+          plus accessibles et compréhensibles.
+        </p>
+        <p>
+          La sélection des variables est une étape cruciale dans la modélisation du risque de crédit, permettant de
+          déterminer les facteurs les plus influents pour la prédiction précise et robuste du risque. Nous utilisons des
+          méthodes statistiquement rigoureuses telles que la sélection en avant (Forward Selection), l'élimination
+          arrière (Backward Elimination), et la sélection pas à pas (Stepwise Selection) pour assurer que seules les
+          variables les plus significatives et stables sont incluses dans le modèle final.
+          Partie détaillée
+        </p>
 
-        <a href="/step3/"
-          style="font-size: 12px; text-transform: uppercase; margin: 20px; color: black; z-index: 1;
-          transition: font-size 0.3s ease;"
-          onmouseover="this.style.fontSize='14px'"
-          onmouseout="this.style.fontSize='12px'">
-          <h1> step 3 : Sélection des varibales </h1>
-        </a>
 
-        <a href="/step4/"
-          style="font-size: 12px; text-transform: uppercase; margin: 20px; color: black; z-index: 1;
-          transition: font-size 0.3s ease;"
-          onmouseover="this.style.fontSize='14px'"
-          onmouseout="this.style.fontSize='12px'">
-          <h1> step 4 : Grille de score </h1>
-        </a>
-
-        <a href="/step5/"
-          style="font-size: 12px; text-transform: uppercase; margin: 20px; color: black; z-index: 1;
-          transition: font-size 0.3s ease;"
-          onmouseover="this.style.fontSize='14px'"
-          onmouseout="this.style.fontSize='12px'">
-          <h1> step 5 : Segmentation </h1>
-        </a>
-
-        <a href="/step6/"
-          style="font-size: 12px; text-transform: uppercase; margin: 20px; color: black; z-index: 1;
-          transition: font-size 0.3s ease;"
-          onmouseover="this.style.fontSize='14px'"
-          onmouseout="this.style.fontSize='12px'">
-          <h1> step 6 : Calcul de la LRA, MoC A, MoC C et PD </h1>
-        </a>
-      </div>
-
-      
-      <button class="animated-button" onclick="location.href=/variables_choisis/" type="button">
+        <button class="animated-button" onclick="location.href=/presentation2/" type="button">
           <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
             <path
-              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-            ></path>
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+            </path>
           </svg>
           <span class="text">Suivant</span>
           <span class="circle"></span>
           <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
             <path
-              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-            ></path>
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+            </path>
           </svg>
         </button>
-    </div>
-  </body>
+      </div>
+
+  </main>
+</body>
+
 </html>

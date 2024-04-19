@@ -1,9 +1,10 @@
-html, body {
+html,
+body {
     height: 100%;
     margin: 0;
     border: 0;
     font-family: 'Lato', sans-serif;
-    
+
 }
 
 body {
@@ -11,7 +12,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 50vh;   
+    height: 50vh;
 }
 
 
@@ -19,8 +20,10 @@ body {
     font-size: 4rem;
     text-align: center;
     color: rgb(202, 186, 186);
-    margin-top: 50px; /* Espace en haut */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Ombre portée */
+    margin-top: 50px;
+    /* Espace en haut */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    /* Ombre portée */
 }
 
 
@@ -28,12 +31,26 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
 }
 
-.format{
-    position: fixed; 
+.format {
+    position: fixed;
     left: 335px;
+}
+
+h3 {
+    position: absolute;
+    text-decoration: none;
+    bottom: 0%;
+    left: 1%;
+    color: white;
+}
+
+p {
+    text-align: center;
+    font-weight: bold;
+    color: white;
 }
 
 
@@ -51,43 +68,47 @@ button {
     border: none;
     border-radius: 15px;
     font-weight: 1000;
-  }
-  
-  button span {
+}
+
+button span {
     display: block;
     margin-left: 0.3em;
     transition: all 0.3s ease-in-out;
-  }
-  
-  button svg {
+}
+
+.page a {
+    text-decoration: none;
+}
+
+button svg {
     display: block;
     transform-origin: center center;
     transition: transform 0.3s ease-in-out;
-  }
-  
-  button:hover {
+}
+
+button:hover {
     background: #000;
-  }
-  
-  button:hover .svg-wrapper {
+}
+
+button:hover .svg-wrapper {
     transform: scale(1.25);
     transition: 0.5s linear;
-  }
-  
-  button:hover svg {
+}
+
+button:hover svg {
     transform: translateX(1.2em) scale(1.1);
     fill: #fff;
-  }
-  
-  button:hover span {
+}
+
+button:hover span {
     opacity: 0;
     transition: 0.5s linear;
-  }
-  
-  button:active {
+}
+
+button:active {
     transform: scale(0.95);
-  }
-  
+}
+
 .animated-button {
     position: fixed;
     display: flex;
@@ -178,6 +199,3 @@ button {
     height: 220px;
     opacity: 1;
 }
-
-
-

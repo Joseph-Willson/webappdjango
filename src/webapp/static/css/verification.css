@@ -1,5 +1,5 @@
 html, body {
-    height: 250%;
+    height: 350%;
     margin: 0;
     padding: 0;
     border: 0;
@@ -22,6 +22,11 @@ body {
 .page-actions { 
     padding: 1rem 3rem 0 3rem;
 }
+
+.page-actions a { 
+    text-decoration: none;
+}
+
 
 .page-actions .back-btn { 
     color: white;
@@ -116,6 +121,9 @@ body {
     transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
+
+
+
 .animated-button svg {
     position: absolute;
     width: 24px;
@@ -184,6 +192,48 @@ body {
     height: 220px;
     opacity: 1;
 }
+
+/* styles.css */
+
+/* Navigation */
+.navigation {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navigation li {
+    display: inline;
+    margin-right: 30px; /* Augmentation de la marge pour plus d'espace */
+    font-size: 18px; /* Augmentation de la taille de la police */
+    text-transform: uppercase; /* Mise en majuscules */
+}
+
+/* Tableau de données */
+.data-table {
+    border-collapse: collapse;
+    width: 75%;
+}
+
+.data-table th, .data-table td {
+    border: 2px solid #333; /* Augmentation de l'épaisseur des bordures et changement de couleur */
+    padding: 15px; /* Augmentation de l'espacement à l'intérieur des cellules */
+}
+
+.data-table th {
+    background-color: #f8f9fa; /* Légère modification de la couleur de fond */
+    text-align: center; /* Centrage du texte dans les cellules d'en-tête */
+    font-weight: bold; /* Mise en gras du texte dans les cellules d'en-tête */
+    color: #333; /* Changement de couleur du texte pour une meilleure lisibilité */
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1); /* Légère ombre pour améliorer le contraste */
+    border-bottom: 3px solid #ccc; /* Ajout d'une bordure en bas */
+}
+
+.data-table td {
+    text-align: center; /* Centrage du texte dans les cellules de données */
+    font-size: 16px; /* Réduction de la taille de la police */
+}
+
 
 @keyframes slidein {
     from {

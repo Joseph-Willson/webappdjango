@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>step2</title>
+    <link rel="stylesheet" href="{% static 'css/step1.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="details-container">
+            <h1> Plus de détails :</h1>
+        </div>
+
+        <div class="feature-container">
+            <h2>Contexte Théorique et Application en Modélisation du Risque de Crédit :</h2>
+
+            <p>La segmentation dans la finance vise à créer des Classes Homogènes de Risque (CHR) en regroupant des
+                emprunteurs qui présentent des niveaux de risque similaires. Ces classes sont cruciales pour une
+                évaluation et gestion précises du risque de crédit. Pour réaliser une segmentation efficace, plusieurs
+                méthodes peuvent être employées, allant des arbres de décision aux algorithmes génétiques et à
+                l'optimisation des seuils de segmentation.</p>
+
+            <h2>Contexte Réglementaire et Objectifs :</h2>
+
+            <p>Notre approche est guidée par les normes de l'Autorité Bancaire Européenne (EBA), exigeant une
+                homogénéité claire au sein des classes de notation. Cela assure que chaque segment reflète un risque de
+                défaut comparable, ce qui est fondamental pour la précision de nos modèles et notre conformité
+                réglementaire.</p>
+
+            <h2>Mise en Œuvre et Méthodologie :</h2>
+
+            <p>Nous avons adopté l'algorithme des ruptures naturelles de Jenks pour sa capacité à minimiser la variance
+                intra-classe et maximiser la variance inter-classe. Ce choix stratégique permet de garantir à la fois
+                l'homogénéité au sein des classes et une distinction claire entre elles, facilitant une gestion de
+                risque efficace et équilibrée.</p>
+
+            <h2>Impact sur la Pratique et la Grille de Score :</h2>
+
+            <p>Les segments définis sont intégrés dans notre grille de score, permettant une calibration précise qui
+                reflète fidèlement les niveaux de risque de chaque classe. Cela améliore la transparence et la cohérence
+                des évaluations de risque, soutenant une application cohérente des politiques de crédit.</p>
+
+            <h2>Un Impact Concret</h2>
+
+            <p>Grâce à notre méthode de segmentation avancée, notre application offre plusieurs avantages pratiques :
+            </p>
+            <p>Décisions de Crédit Éclairées : Les segments identifiés sont directement intégrés dans notre processus de
+                décision de crédit, permettant une évaluation plus précise du risque pour chaque emprunteur.</p>
+            <p>Conformité Réglementaire : Notre approche de segmentation répond aux normes réglementaires les plus
+                strictes, garantissant ainsi la conformité de nos pratiques aux exigences de l'Autorité Bancaire
+                Européenne (EBA) et d'autres organismes de régulation.</p>
+            <p>Optimisation des Ressources : En comprenant mieux le profil de risque de chaque emprunteur, nous pouvons
+                optimiser l'allocation des ressources et minimiser les pertes potentielles pour notre institution.</p>
+
+        </div>
+
+    </div>
+</body>
+
+</html>

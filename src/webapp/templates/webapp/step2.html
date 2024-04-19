@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>step2</title>
+    <link rel="stylesheet" href="{% static 'css/step1.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="details-container">
+            <h1> Plus de détails :</h1>
+        </div>
+
+        <div class="feature-container">
+            <h3>Contexte et Objectifs :</h3>
+            <p>Dans notre modèle, la discretisation par Chi-Merge a pour but de capturer efficacement les effets non
+                linéaires entre les variables continues et le risque de défaut. Cette technique réduit la variabilité
+                des estimations de risque, améliorant la robustesse du modèle. Elle est également cruciale pour la
+                gestion des valeurs extrêmes, souvent problématiques dans les modèles financiers.</p>
+
+            <h3>Méthodologie Employée :</h3>
+            <p>La méthode Chi-Merge utilise le test statistique χ2 pour évaluer si deux intervalles adjacents de données
+                doivent être fusionnés ou maintenus séparés. Ce choix est basé sur l'hypothèse d'indépendance
+                statistique entre les classes des intervalles :</p>
+            <p>- Si le test χ2 ne trouve pas de différence statistiquement significative, les intervalles sont
+                fusionnés. Cela simplifie le modèle tout en conservant une distinction essentielle entre les catégories
+                significatives.</p>
+            <p>- Si le test χ2 montre une différence significative, les intervalles sont conservés séparément pour
+                préserver la nuance dans la modélisation des risques associés à ces segments.</p>
+            <p>Le processus est itératif et continue jusqu'à ce que toutes les données continues soient adéquatement
+                catégorisées en un nombre optimal de groupes, défini par cinq modalités principales dans notre modèle.
+                Ce choix de modalités assure un équilibre entre détail et généralisation, essentiel pour
+                l'interprétation et l'utilisation pratique du modèle dans des décisions de crédit.</p>
+            <h3>Impact sur la Modélisation et l'Interprétation :</h3>
+            <p>Les modèles résultants sont non seulement plus robustes mais également plus faciles à interpréter pour
+                les analystes et les décideurs. Les catégories formées permettent de créer des grilles de score qui sont
+                intuitives et basées sur des distinctions claires et statistiquement justifiées entre les différents
+                risques de crédit.</p>
+
+            <h3>Méthodes de Sélection de Variables Employées</h3>
+            <h3>1. Forward Selection:</h3>
+            <p> - Cette méthode commence avec un modèle sans variables et ajoute progressivement celles qui améliorent
+                le plus la performance du modèle, basée sur des critères statistiques précis tels que le test de Wald.
+            </p>
+
+            <h3>2. Backward Elimination:</h3>
+            <p> - Cette approche initie le modèle avec toutes les variables potentielles et élimine celles ayant le
+                moins d'impact significatif, permettant de concentrer le modèle sur les variables qui contribuent
+                réellement à la prédiction.</p>
+            <h3>3. Stepwise Selection:</h3>
+            <p> - Combinaison des deux méthodes précédentes, cette technique ajuste continuellement le modèle en
+                ajoutant et en retirant des variables pour optimiser la significativité globale et la performance du
+                modèle.</p>
+
+            <h3>Évaluation de la Stabilité des Variables</h3>
+            <p>- Analyse de Stabilité: Régulièrement, nous évaluons la stabilité des contributions des variables à
+                travers le temps pour détecter toute instabilité potentiellement préjudiciable à la fiabilité du modèle.
+            </p>
+
+            <p>- Indicateur de Stabilité de Population (PSI): Nous employons le PSI pour comparer la distribution des
+                variables et des scores entre les échantillons de développement et de validation, ainsi qu'entre
+                différents moments, pour assurer la stabilité du modèle.</p>
+
+            <h3>Tests Statistiques Appliqués</h3>
+            <p>- Test de Wald: Ce test joue un rôle crucial en évaluant la significativité des coefficients des
+                variables dans le modèle.</p>
+            <p>- V de Cramér: Pour les variables catégorielles, nous utilisons le V de Cramér pour mesurer l'association
+                entre ces variables et la variable cible, basé sur le Chi-deux.</p>
+
+        </div>
+
+    </div>
+</body>
+
+</html>
