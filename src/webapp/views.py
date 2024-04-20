@@ -91,7 +91,7 @@ def variables_choisis(request):
             field_value = form.cleaned_data['my_field']
 
             # Chemin vers le fichier où vous voulez enregistrer les données
-            file_path = "../src/data/data.txt"
+            file_path = r"./data/data.txt"
 
             # Ouvrir le fichier en mode écriture
             with open(file_path, "w") as file:
@@ -109,11 +109,11 @@ def verification(request):
     graphs_base64 = []  # Pour stocker les images converties en base64
     mod = []
 
-    with open('../src/data/data.txt', 'r') as file:
+    with open(r'./data/data.txt', 'r') as file:
         content = file.read()
         content = re.split('/|;| |-|\\\\|,', content)
 
-    df_discretized = pd.read_csv("../src/data/df_discretized.csv")
+    df_discretized = pd.read_csv(r"./data/df_discretized.csv")
 
     df_discretized['date_mensuelle'] = pd.to_datetime(df_discretized['date_mensuelle'])
     df_discretized['annee'] = df_discretized['date_mensuelle'].dt.year
@@ -385,7 +385,7 @@ def verification(request):
 ######################################################
 
 def dashboard(request):
-    table_finale = pd.read_csv("../src/data/table_finale2.csv")
+    table_finale = pd.read_csv(r"./data/table_finale2.csv")
 
     ID = table_finale["SK_ID_CURR"].unique()
     seg = table_finale["Segment"].unique()
@@ -444,7 +444,7 @@ def dashboard(request):
 
 
 def csv_table(request):
-    df = pd.read_csv("../src/data/Columns_Description.csv", sep=";", encoding='latin1')
+    df = pd.read_csv(r"./data/Columns_Description.csv", sep=";", encoding='latin1')
     
     name_type_suite_options = df["Row"].unique()
     
