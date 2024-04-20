@@ -1,6 +1,5 @@
 /.idea/
 /venv/
-src/data/application_train_vf.csv
 src/data/df_discretized.csv
 src/data/data.txt
 src/data/table_finale.csv
