@@ -26,7 +26,7 @@ SECRET_KEY = 'an4)=w*9d!60u1flwbdt+_&%$qf(-vzsyxwlv+r9ewtg%lwch$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
+ALLOWED_HOSTS = ['localhost', '.vercel.app']
 
 
 # Application definition
@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'webappdjango.wsgi.app'
+WSGI_APPLICATION = 'webappdjango.wsgi.application'
 
 
 # Database
