@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'an4)=w*9d!60u1flwbdt+_&%$qf(-vzsyxwlv+r9ewtg%lwch$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
 
@@ -100,6 +100,17 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+# Début de la section consacrée à la sécurité
+SECURITY_CONFIG = {
+    # Autres paramètres de sécurité...
+    
+    # Paramètres de sécurité supplémentaires à ajouter
+    'SECURE_HSTS_SECONDS': 31536000,  # 1 an
+    'SECURE_SSL_REDIRECT': True,
+    'SESSION_COOKIE_SECURE': True,
+    'CSRF_COOKIE_SECURE': True,
+}
 
 
 # Internationalization
