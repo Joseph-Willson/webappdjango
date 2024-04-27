@@ -101,16 +101,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Début de la section consacrée à la sécurité
-SECURITY_CONFIG = {
-    # Autres paramètres de sécurité...
-    
-    # Paramètres de sécurité supplémentaires à ajouter
-    'SECURE_HSTS_SECONDS': 31536000,  # 1 an
-    'SECURE_SSL_REDIRECT': True,
-    'SESSION_COOKIE_SECURE': True,
-    'CSRF_COOKIE_SECURE': True,
-}
+SECURE_HSTS_SECONDS = 31536000
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
 
 
 # Internationalization
