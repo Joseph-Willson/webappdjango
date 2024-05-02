@@ -26,7 +26,7 @@ SECRET_KEY = 'an4)=w*9d!60u1flwbdt+_&%$qf(-vzsyxwlv+r9ewtg%lwch$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
+ALLOWED_HOSTS = ['.vercel.app','now.sh','127.0.0.1','localhost']
 
 
 # Application definition
@@ -56,7 +56,7 @@ ROOT_URLCONF = 'webappdjango.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, "webappdjango/templates")],
+        'DIRS': [os.path.join(BASE_DIR, "webapp/templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -101,12 +101,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-SECURE_HSTS_SECONDS = 31536000
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_PRELOAD = True
 
 
 # Internationalization
@@ -127,6 +121,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "webappdjango/static")
-]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "webappd/static")]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'webappd/static')
